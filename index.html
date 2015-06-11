@@ -8,8 +8,8 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/ngcart/dist/ngCart.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/shopTillController.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/shopTillController.js"></script>
   </head>
 
   <body ng-controller="ShopTillController as ctrl" >
@@ -30,13 +30,32 @@
 
 
 <hr/>
-    <h3>Cart <span> </span></h3>
+    
+  <ngcart-cart></ngcart-cart>
 
-    <ngcart-cart></ngcart-cart>
-   
-    <hr/>
+<hr/>
 
-
+  <div class="row">
+    <div class="col-md-12">
+        
+    <h3>Checkout <span> (ngcart-checkout)</span></h3>
+        
+        
+        <div class="row">
+    <div class="col-xs-4">
+        <h4>service 'log'</h4>
+        <ngcart-checkout service="log">Checkout</ngcart-checkout>
+    </div>
+    <div class="col-xs-4">
+        <h4>service 'http'</h4>
+        <ngcart-checkout service="http" settings="httpSettings">Checkout </ngcart-checkout>
+    </div>
+    <div class="col-xs-4">
+        <h4>service 'paypal'</h4>
+        <ngcart-checkout service="paypal" settings="payPalSettings"></ngcart-checkout>
+    </div>
+</div>
+        
   </body>
 
   </html	
