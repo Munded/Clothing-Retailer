@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var port = process.env.PORT || 3000
+var path = require('path');
 
-// database set up
+//database set up
 // var mongojs = require("mongojs");
 // var mongoose = require('mongoose')
 // var inventoryUri = 'mongodb://styd:1234@ds043982.mongolab.com:43982/shop-till-you-drop'

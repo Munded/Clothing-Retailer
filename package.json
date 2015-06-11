@@ -1,5 +1,5 @@
 {
-  "name": "ShopTill",
+  "name": "ShopTillYouDrop",
   "version": "1.0.0",
   "description": "",
   "main": "Gruntfile.js",
@@ -9,6 +9,7 @@
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-watch": "^0.6.1",
     "mongodb": "^2.0.33",
+    "mongojs": "^1.0.0",
     "mongoose": "^4.0.5"
   },
   "devDependencies": {
