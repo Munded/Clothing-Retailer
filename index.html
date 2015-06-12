@@ -8,6 +8,7 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/ngcart/dist/ngCart.js"></script>
+    <script src="node_modules/angular-ui-router/build/angular-ui-router.min.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/shopTillController.js"></script>
   </head>
@@ -16,72 +17,104 @@
 
   <div id="navbar">
     <span></span>
+    <h1> Shop Till You Drop </h1>
     <ngcart-summary></ngcart-summary>
-  </div>
+    <button ui-sref="Modal.cart">Cart</button>
+
+<!--   <div ui-view="modal" autoscroll="false"></div>
+  </div> -->
+  <section class="container">
+      <div class="row"> 
     <h3>Women’s Footwear</h3>
-    	<ul class="list-group row" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Footwear'}">
-    		<li class="list-group-item">
-          <li>Name: {{inventory.name}} </li>
-          <li>Price: £{{inventory.price}} </li>
-          <li>Quantity: {{inventory.quantity}} </li>
-          <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
-    		</li>
-    	</ul>
+        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Footwear'}">
+          <li class="list-group-item">
+            <p>Name: {{inventory.name}} </p>
+            <p>Price: £{{inventory.price}} </p>
+            <p>Quantity: {{inventory.quantity}} </p>
+            <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
+          </li>
+        </ul>
+      </div>
+  </section>
+
+  <section class="container">
+      <div class="row"> 
     <h3>Women’s Casualwear</h3>
-      <ul class="list-group row" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Casualwear'}">
+      <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Casualwear'}">
         <li class="list-group-item">
-          <li>Name: {{inventory.name}} </li>
-          <li>Price: £{{inventory.price}} </li>
-          <li>Quantity: {{inventory.quantity}} </li>
+          <p>Name: {{inventory.name}} </p>
+          <p>Price: £{{inventory.price}} </p>
+          <p>Quantity: {{inventory.quantity}} </p>
           <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
         </li>
       </ul>
-    <h3>Men’s Footwear</h3>
-      <ul class="list-group row" ng-repeat="inventory in ctrl.inventory | filter: { category:'Men’s Footwear'}">
-        <li class="list-group-item">
-          <li>Name: {{inventory.name}} </li>
-          <li>Price: £{{inventory.price}} </li>
-          <li>Quantity: {{inventory.quantity}} </li>
-          <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
-        </li>
-      </ul>
-    <h3>Men’s Casualwear</h3>
-      <ul class="list-group row" ng-repeat="inventory in ctrl.inventory | filter: { category:'Men’s Casualwear'}">
-        <li class="list-group-item">
-          <li>Name: {{inventory.name}} </li>
-          <li>Price: £{{inventory.price}} </li>
-          <li>Quantity: {{inventory.quantity}} </li>
-          <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
-        </li>
-      </ul>
-    <h3>Men’s Formalwear</h3>
-      <ul class="list-group row" ng-repeat="inventory in ctrl.inventory | filter: { category:'Men’s Formalwear'}">
-        <li class="list-group-item">
-          <li>Name: {{inventory.name}} </li>
-          <li>Price: £{{inventory.price}} </li>
-          <li>Quantity: {{inventory.quantity}} </li>
-          <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
-        </li>
-      </ul>
+    </div>
+    </section>
+
+   <section class="container">
+      <div class="row"> 
     <h3>Women’s Formalwear</h3>
-      <ul class="list-group row" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Formalwear'}">
+      <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Formalwear'}">
         <li class="list-group-item">
-          <li>Name: {{inventory.name}} </li>
-          <li>Price: £{{inventory.price}} </li>
-          <li>Quantity: {{inventory.quantity}} </li>
+          <p>Name: {{inventory.name}} </p>
+          <p>Price: £{{inventory.price}} </p>
+          <p>Quantity: {{inventory.quantity}} </p>
           <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
         </li>
       </ul>
+    </div>
+    </section>
 
+    <section class="container">
+      <div class="row"> 
+      <h3>Men’s Footwear</h3>
+        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Men’s Footwear'}">
+          <li class="list-group-item">
+            <p>Name: {{inventory.name}} </p>
+            <p>Price: £{{inventory.price}} </p>
+            <p>Quantity: {{inventory.quantity}} </p>
+            <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
+          </li>
+        </li>
+      </ul>
+    </div>
+    </section>
 
-<hr/>
-    
-  <ngcart-cart></ngcart-cart>
+    <section class="container">
+      <div class="row"> 
+      <h3>Men’s Casualwear</h3>
+        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Men’s Casualwear'}">
+          <li class="list-group-item">
+            <p>Name: {{inventory.name}} </p>
+            <p>Price: £{{inventory.price}} </p>
+            <p>Quantity: {{inventory.quantity}} </p>
+            <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="row"> 
+      <h3>Men’s Formalwear</h3>
+        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Men’s Formalwear'}">
+          <li class="list-group-item">
+            <p>Name: {{inventory.name}} </p>
+            <p>Price: £{{inventory.price}} </p>
+            <p>Quantity: {{inventory.quantity}} </p>
+            <ngcart-addtocart id="{{ inventory.id }}" name="{{ inventory.name }}" price="{{ inventory.price }}" quantity="1" quantity-max="30" data="inventory"> Add to Cart</ngcart-addtocart>
+          </li>
+        </ul>
+      </div>
+      </section>
+
 
 <hr/>
 
   <div class="row">
     <div class="col-md-12">
+
+  <ngcart-cart></ngcart-cart>
         
     <h3>Checkout <span> (ngcart-checkout)</span></h3>
         

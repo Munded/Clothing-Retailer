@@ -97,4 +97,5 @@ shopTillYouDrop.controller('ShopTillController', ['$http', 'ngCart', function($h
 				price: 540,
 				quantity: 5
 			}]
+
 }])
