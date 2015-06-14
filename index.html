@@ -28,6 +28,7 @@
     <h3>Women’s Footwear</h3>
         <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="inventory in ctrl.inventory | filter: { category:'Women’s Footwear'}">
           <li class="list-group-item">
+            {{inventory}}
             <p>Name: {{inventory.name}} </p>
             <p>Price: £{{inventory.price}} </p>
             <p>Quantity: {{inventory.quantity}} </p>
