@@ -51,6 +51,14 @@
                 <td>{{ item.getPrice() | currency}}</td>
                 <td>{{ item.getTotal() | currency }}</td>
             </tr>
+            <tr ng-model="voucher">
+                <td>
+                    <form>
+                        Voucher Code: <input type="text" name="voucherCode">
+                        <input type="submit" value="Submit Voucher">
+                    </form>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -1,6 +1,7 @@
 describe('ShopTillYouDrop homepage', function() {
 	beforeEach(function(){
     browser.get('http://localhost:3000');
+    var voucher = browser.findElement(protractor.By.model('voucher'))
 	});
 	
   it('has a title', function() {
@@ -42,5 +43,15 @@ describe('ShopTillYouDrop homepage', function() {
 			element(by.linkText('Add to Cart')).click()
 			expect(element(by.id('cart')).getText()).toContain('141');
 		})
+	});
+
+	describe('it can add vouchers to final purchase', function() {
+		it('can take 5 pounds off', function() {
+			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
+			get(0).
+			element(by.linkText('Add to Cart')).click()
+			voucher.sendKeys('5poundsoff')
+			expect(element(by.id('cart')).getText()).toContain('94');
+		});
 	});
 });
