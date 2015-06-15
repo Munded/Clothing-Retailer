@@ -99,3 +99,4 @@ shopTillYouDrop.controller('ShopTillController', ['$http', 'ngCart', function($h
 			}]
 
 }])
+

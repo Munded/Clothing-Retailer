@@ -23,6 +23,10 @@ app.get('/', function(request, response){
   response.sendfile('index.html')
 });
 
+app.post('/cart', function(req, res){
+	res.renderFile('./app/templates/cart.html')
+});
+
 server.listen(3000, function(){
   console.log("Server listening on port " + port);
 });
