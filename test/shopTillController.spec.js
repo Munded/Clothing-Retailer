@@ -83,11 +83,16 @@ describe('ShopTillController', function() {
 			expect(ctrl.totalPrice).toEqual(94)
 		});
 
-		it('can apply a five pound discount', function() {
+		it('can apply a ten pound discount', function() {
 			ctrl.addItemToCart(item1)
 			ctrl.addTenVoucher()
 			expect(ctrl.subTotalPrice).toEqual(99)
 			expect(ctrl.totalPrice).toEqual(89)
+		});
+
+		it('will raise an error if not eligible for 10 pound discount', function(){
+			ctrl.addItemToCart(item2)
+			expect( function() { ctrl.addTenVoucher() } ).toThrow(new Error("Not Eligible for £10 discount"))
 		});
 	});
 });

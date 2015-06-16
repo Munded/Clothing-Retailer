@@ -150,6 +150,9 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 			self.tenPoundVoucher = true
 			self.setTotal()
 		}
+		else {
+			throw new Error("Not Eligible for £10 discount")
+		}
 	}
 
 
