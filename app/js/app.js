@@ -7,7 +7,6 @@ var shopTillYouDrop = angular.module('ShopTill', ['ngResource', 'ngCart', 'ui.ro
 //   });
 
 // 		$urlRouterProvider.otherwise("/cart")
-
 // });
 
 	

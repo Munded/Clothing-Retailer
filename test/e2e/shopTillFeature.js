@@ -50,7 +50,7 @@ describe('ShopTillYouDrop homepage', function() {
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
 			get(0).
 			element(by.linkText('Add to Cart')).click()
-			voucher.sendKeys('5poundsoff')
+			element(by.id('five-pound-voucher')).click();
 			expect(element(by.id('cart')).getText()).toContain('94');
 		});
 	});

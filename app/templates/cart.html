@@ -51,13 +51,19 @@
                 <td>{{ item.getPrice() | currency}}</td>
                 <td>{{ item.getTotal() | currency }}</td>
             </tr>
-            <tr ng-model="voucher">
-                <td>
-                    <form>
-                        Voucher Code: <input type="text" name="voucherCode">
-                        <input type="submit" value="Submit Voucher">
-                    </form>
-                </td>
+             <ul class="vouchers">
+                <li>
+                  <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ngCart.applyFiveVoucher()">£5 off voucher
+                  </a>
+                </li>
+                <li>
+                  <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ngCart.applyTenVoucher()">£10 off voucher
+                  </a>
+                </li>
+                <li>
+                  <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ngCart.applyFifteenVoucher()">£15 off voucher
+                  </a>
+                </li>
             </tr>
             </tbody>
         </table>

@@ -96,7 +96,39 @@ shopTillYouDrop.controller('ShopTillController', ['$http', 'ngCart', function($h
 				category: "Women’s Formalwear",
 				price: 540,
 				quantity: 5
+			},
+			{
+				id: 14,
+				name: "Five Pounds Off",
+				category: "Voucher",
+				price: -5
 			}]
+
+		ngCart.setFiveVoucher = function(){
+		}
+
+		ngCart.setTenVoucher = function(){
+
+		}
+
+		ngCart.setFifteenVoucher = function(){
+
+		}
+
+		ngCart.applyFiveVoucher = function(){
+			if(ngCart.setFiveVoucher) {
+				return this.totalCost() -= 5
+			}
+
+		}
+
+		ngCart.applyTenVoucher = function(){
+
+		}
+
+		ngCart.applyFifteenVoucher = function(){
+
+		}
 
 }])
 
