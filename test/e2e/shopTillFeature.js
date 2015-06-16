@@ -1,7 +1,7 @@
 describe('ShopTillYouDrop homepage', function() {
 	beforeEach(function(){
     browser.get('http://localhost:3000');
-    // var voucher = browser.findElement(protractor.By.model('voucher'))
+ 
 	});
 	
   it('has a title', function() {
@@ -22,14 +22,14 @@ describe('ShopTillYouDrop homepage', function() {
 		it('can add an item to the shopping basket', function() {
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
 			get(0).
-			element(by.linkText('Add to Cart')).click()  
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()  
 		  expect(element(by.id('cart')).getText()).toContain('99');
 		 });
 
 		it('can remove an item from the basket', function() {
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
 			get(0).
-			element(by.linkText('Add to Cart')).click()
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
 			element(by.css('.glyphicon-remove')).click()
 			expect(element(by.id('cart')).getText()).toContain('Your cart is empty');
 		});
@@ -37,10 +37,10 @@ describe('ShopTillYouDrop homepage', function() {
 		it('can calculate total', function() {
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
 			get(0).
-			element(by.linkText('Add to Cart')).click()
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
 			get(1).
-			element(by.linkText('Add to Cart')).click()
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
 			expect(element(by.id('cart')).getText()).toContain('141');
 		})
 	});
@@ -49,7 +49,7 @@ describe('ShopTillYouDrop homepage', function() {
 		it('can take 5 pounds off', function() {
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
 			get(0).
-			element(by.linkText('Add to Cart')).click()
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
 			element(by.id('five-pound-voucher')).click();
 			expect(element(by.id('cart')).getText()).toContain('94');
 		});

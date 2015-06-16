@@ -20,7 +20,7 @@
     <h1 class="navbar-brand" href="/ "> Shop Till You Drop </h1>
 <!--       <li ng-class="{active: $state.is('site.cart')}"> cart </li> -->
         <a class-"navbar-nav navbar-right" href="/cart">
-          <ngcart-summary></ngcart-summary>
+          <h4>{{ctrl.totalPrice}}</h4>
         </a>
   </div>
 
@@ -34,7 +34,7 @@
             <p>Name: {{item.name}} </p>
             <p>Price: £{{item.price}} </p>
             <p>Quantity: {{item.quantity}} </p>
-            <ngcart-addtocart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item"> Add to Cart</ngcart-addtocart>
+            <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
         </ul>
       </div>
@@ -48,7 +48,7 @@
           <p>Name: {{item.name}} </p>
           <p>Price: £{{item.price}} </p>
           <p>Quantity: {{item.quantity}} </p>
-          <ngcart-addtocart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item"> Add to Cart</ngcart-addtocart>
+          <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
         </li>
       </ul>
     </div>
@@ -62,7 +62,7 @@
           <p>Name: {{item.name}} </p>
           <p>Price: £{{item.price}} </p>
           <p>Quantity: {{item.quantity}} </p>
-          <ngcart-addtocart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item"> Add to Cart</ngcart-addtocart>
+          <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
         </li>
       </ul>
     </div>
@@ -76,7 +76,7 @@
             <p>Name: {{item.name}} </p>
             <p>Price: £{{item.price}} </p>
             <p>Quantity: {{item.quantity}} </p>
-            <ngcart-addtocart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item"> Add to Cart</ngcart-addtocart>
+            <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
         </li>
       </ul>
@@ -91,7 +91,7 @@
             <p>Name: {{item.name}} </p>
             <p>Price: £{{item.price}} </p>
             <p>Quantity: {{item.quantity}} </p>
-            <ngcart-addtocart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item"> Add to Cart</ngcart-addtocart>
+            <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
         </ul>
       </div>
@@ -105,7 +105,7 @@
             <p>Name: {{item.name}} </p>
             <p>Price: £{{item.price}} </p>
             <p>Quantity: {{item.quantity}} </p>
-            <ngcart-addtocart id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item"> Add to Cart</ngcart-addtocart>
+            <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
         </ul>
       </div>
@@ -113,10 +113,66 @@
 
 
 <hr/>
+  
+  <div class="table-responsive col-lg-12" >
 
-  <div class="row">
-    <div class="col-md-12">
+        <table class="table table-striped ">
 
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Subtotal:</td>
+                <td>{{ ctrl.subTotalPrice }}</td>
+
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total:</td>
+              <td>{{ ctrl.totalPrice }}</td>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr ng-repeat="item in ctrl.shoppingCart track by $index">
+                <td><span ng-click="ctrl.removeItemFromCart(item)" class="glyphicon glyphicon-remove"></span></td>
+
+                <td>{{ item.name }}</td>
+                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.quantity == 1}"
+                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                    {{ item.quantity }}&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                <td>{{ item.price}}</td>
+                
+            </tr>
+             <ul class="vouchers">
+                <li>
+                  <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
+                  </a>
+                </li>
+                <li>
+                  <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
+                  </a>
+                </li>
+                <li>
+                  <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
+                  </a>
+                </li>
+            </tr>
+            </tbody>
+        </table>
+    </div>
         
     <h3>Checkout <span> (ngcart-checkout)</span></h3>
         

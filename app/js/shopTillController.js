@@ -1,6 +1,9 @@
 shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	var self = this;
 
+	self.templates =[{name: 'Cart', url: 'app/templates/cart.html'},
+									 {name: 'Checkout', url: 'app/templates/checkout.html'}]
+
 	self.inventory =[{
 				id: 1,
 				name: "Almond Toe Court Shoes, Patent Black",
@@ -106,6 +109,14 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	self.tenPoundVoucher = false;
 	self.fifteenPoundVoucher = false;
 	self.containingShoes = false;
+	self.emptyCart = true
+
+
+	self.isEmpty = function() {
+		if(self.shoppingCart.length > 0){
+			return false
+		}
+	}
 
 	self.checkForShoes = function() {
 		for(j=0; j < self.shoppingCart.length; j++){
@@ -144,6 +155,7 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	self.setTotal = function() {
 		self.setSubTotal()
 		self.checkForShoes()
+		self.isEmpty()
 		if(self.fivePoundVoucher){
 			self.totalPrice = self.subTotalPrice - 5
 		} else if(self.tenPoundVoucher){
