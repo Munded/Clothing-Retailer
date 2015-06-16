@@ -33,7 +33,9 @@ describe('ShopTillController', function() {
 		it('displays items', function() {
 			expect(ctrl.inventory).toContain(item1)
 		});
+	});
 
+	describe('the shopping cart', function() {
 		it('starts with an empty cart', function() {
 			expect(ctrl.shoppingCart).toEqual([])
 		});
@@ -47,5 +49,31 @@ describe('ShopTillController', function() {
 			ctrl.addItemToCart(item1)
 			expect(ctrl.shoppingCart).toEqual([item1])
 		});
+
+		it('can remove an item from the cart', function() {
+			ctrl.addItemToCart(item1)
+			ctrl.removeItemFromCart(item1)
+			expect(ctrl.shoppingCart).toEqual([])
+		})
+
+		it('if 2 items in car, remove only the specified item', function() {
+			ctrl.addItemToCart(item1)
+			ctrl.addItemToCart(item2)
+			ctrl.removeItemFromCart(item1)
+			expect(ctrl.shoppingCart).toEqual([item2])
+		});
+
+		it('can calculate the subtotal', function() {
+			ctrl.addItemToCart(item1)
+			ctrl.addItemToCart(item2)
+			expect(ctrl.subTotalPrice).toEqual(141)
+		});
+		
+		it('can adjust subtotal when item is removed', function() {
+			ctrl.addItemToCart(item1)
+			ctrl.addItemToCart(item2)
+			ctrl.removeItemFromCart(item1)
+			expect(ctrl.subTotalPrice).toEqual(42)
+		})
 	});
 });

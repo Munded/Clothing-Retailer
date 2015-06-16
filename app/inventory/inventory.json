@@ -1,7 +1,4 @@
-shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
-	var self = this;
-
-	self.inventory =[{
+			[{
 				id: 1,
 				name: "Almond Toe Court Shoes, Patent Black",
         category: "Women’s Footwear",
@@ -98,61 +95,3 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 				category: "Voucher",
 				price: -5
 			}]
-
-	self.shoppingCart = [];
-	self.subTotalPrice = 0;
-	self.totalPrice = 0;
-
-	self.addItemToCart = function(item) {
-		self.shoppingCart.push(item)
-		self.setTotal()
-	};
-
-	self.removeItemFromCart = function(item) {
-		for(i=0; i < self.shoppingCart.length; i++){
-			if(self.shoppingCart[i] === item){
-				self.shoppingCart.splice(i, 1);
-			}
-		}
-		self.setTotal()
-	};
-
-	self.calcSubTotal = function() {
-		return self.shoppingCart.map(function(item) {
-			return parseFloat(item.price);
-		}).reduce(function(old, now) {
-			return old + now;
-		},0);
-	};
-
-	self.setTotal = function() {
-		self.subTotalPrice = self.calcSubTotal();
-	}
-		// self.setFiveVoucher = function(){
-		// }
-
-		// self.setTenVoucher = function(){
-
-		// }
-
-		// self.setFifteenVoucher = function(){
-
-		// }
-
-		// self.applyFiveVoucher = function(){
-		// 	if(self.setFiveVoucher) {
-		// 		return this.totalCost() -= 5
-		// 	}
-
-		// }
-
-		// self.applyTenVoucher = function(){
-
-		// }
-
-		// self.applyFifteenVoucher = function(){
-
-		// }
-
-}])
-
