@@ -103,6 +103,7 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	self.subTotalPrice = 0;
 	self.totalPrice = 0;
 	self.fivePoundVoucher = false;
+	self.tenPoundVoucher = false;
 
 	self.addItemToCart = function(item) {
 		self.shoppingCart.push(item)
@@ -134,12 +135,21 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 		self.setSubTotal()
 		if(self.fivePoundVoucher){
 			self.totalPrice = self.subTotalPrice - 5
+		} else if(self.tenPoundVoucher){
+			self.totalPrice = self.subTotalPrice - 10
 		}
 	}
 
 	self.addFiveVoucher = function() {
 		self.fivePoundVoucher = true
 		self.setTotal()
+	}
+
+	self.addTenVoucher = function() {
+		if(self.subTotalPrice >= 50) {
+			self.tenPoundVoucher = true
+			self.setTotal()
+		}
 	}
 
 

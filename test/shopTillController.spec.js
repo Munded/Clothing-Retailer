@@ -82,5 +82,12 @@ describe('ShopTillController', function() {
 			expect(ctrl.subTotalPrice).toEqual(99)
 			expect(ctrl.totalPrice).toEqual(94)
 		});
+
+		it('can apply a five pound discount', function() {
+			ctrl.addItemToCart(item1)
+			ctrl.addTenVoucher()
+			expect(ctrl.subTotalPrice).toEqual(99)
+			expect(ctrl.totalPrice).toEqual(89)
+		});
 	});
 });
