@@ -102,6 +102,7 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	self.shoppingCart = [];
 	self.subTotalPrice = 0;
 	self.totalPrice = 0;
+	self.fivePoundVoucher = false;
 
 	self.addItemToCart = function(item) {
 		self.shoppingCart.push(item)
@@ -125,34 +126,22 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 		},0);
 	};
 
-	self.setTotal = function() {
+	self.setSubTotal = function() {
 		self.subTotalPrice = self.calcSubTotal();
 	}
-		// self.setFiveVoucher = function(){
-		// }
 
-		// self.setTenVoucher = function(){
+	self.setTotal = function() {
+		self.setSubTotal()
+		if(self.fivePoundVoucher){
+			self.totalPrice = self.subTotalPrice - 5
+		}
+	}
 
-		// }
+	self.addFiveVoucher = function() {
+		self.fivePoundVoucher = true
+		self.setTotal()
+	}
 
-		// self.setFifteenVoucher = function(){
-
-		// }
-
-		// self.applyFiveVoucher = function(){
-		// 	if(self.setFiveVoucher) {
-		// 		return this.totalCost() -= 5
-		// 	}
-
-		// }
-
-		// self.applyTenVoucher = function(){
-
-		// }
-
-		// self.applyFifteenVoucher = function(){
-
-		// }
 
 }])
 
