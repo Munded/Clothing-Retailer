@@ -5,35 +5,47 @@ describe('ShopTillController', function() {
 
 	beforeEach(inject(function($controller){
 		ctrl = $controller('ShopTillController');
+		item1= {
+				"id": 1,
+				"name": "Almond Toe Court Shoes, Patent Black",
+		    "category": "Women’s Footwear",
+				"price": 99,
+				"quantity": 5
+			};
+		item2 = {			
+				"id": 2,
+				"name": "Suede Shoes, Blue",
+				"category": "Women’s Footwear",
+				"price": 42,
+				"quantity": 4
+			};
+		item3 = {
+			"id": 3,
+			"name": "Leather Driver Saddle Loafers, Tan",
+			"category": "Men’s Footwear",
+			"price": 34,
+			"quantity": 12
+		};
 	}));
 
 	describe('when visiting the homepage', function() {
-		var inventory = [
-			{
-				"id": 1,
-				"name": "Almond Toe Court Shoes, Patent Black",
-		        "category": "Women’s Footwear",
-		        "price": 99,
-		        "quantity": 5
-			},
-			{
-				"id": 2,
-				"name": "Suede Shoes, Blue",
-			        "category": "Women’s Footwear",
-		        "price": 42,
-		        "quantity": 4
-			},
-			{
-				"id": 3,
-				"name": "Leather Driver Saddle Loafers, Tan",
-		        "category": "Men’s Footwear",
-		        "price": 34,
-		        "quantity": 12
-			},
-		]
 
 		it('displays items', function() {
-			expect(ctrl.inventory).toEqual(inventory)
+			expect(ctrl.inventory).toContain(item1)
+		});
+
+		it('starts with an empty cart', function() {
+			expect(ctrl.shoppingCart).toEqual([])
+		});
+
+		it('initalises with a total price of £0', function() {
+			expect(ctrl.subTotalPrice).toEqual(0)
+			expect(ctrl.totalPrice).toEqual(0)
+		});
+
+		it('can add an item to the cart', function() {
+			ctrl.addItemToCart(item1)
+			expect(ctrl.shoppingCart).toEqual([item1])
 		});
 	});
 });

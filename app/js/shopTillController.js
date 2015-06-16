@@ -1,10 +1,5 @@
-shopTillYouDrop.controller('ShopTillController', ['$http', 'ngCart', function($http, ngCart){
+shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	var self = this;
-
-	// http.get("mongodb://styd:1234@ds043982.mongolab.com:43982/shop-till-you-drop")
-	// .success(function(res) {
-	// 	self.inventory = res.inventory
-	// });
 
 	self.inventory =[{
 				id: 1,
@@ -104,31 +99,38 @@ shopTillYouDrop.controller('ShopTillController', ['$http', 'ngCart', function($h
 				price: -5
 			}]
 
-		ngCart.setFiveVoucher = function(){
-		}
+	self.shoppingCart = [];
+	self.subTotalPrice = 0;
+	self.totalPrice = 0;
 
-		ngCart.setTenVoucher = function(){
+	self.addItemToCart = function(item) {
+		self.shoppingCart.push(item)
+	};
+		// self.setFiveVoucher = function(){
+		// }
 
-		}
+		// self.setTenVoucher = function(){
 
-		ngCart.setFifteenVoucher = function(){
+		// }
 
-		}
+		// self.setFifteenVoucher = function(){
 
-		ngCart.applyFiveVoucher = function(){
-			if(ngCart.setFiveVoucher) {
-				return this.totalCost() -= 5
-			}
+		// }
 
-		}
+		// self.applyFiveVoucher = function(){
+		// 	if(self.setFiveVoucher) {
+		// 		return this.totalCost() -= 5
+		// 	}
 
-		ngCart.applyTenVoucher = function(){
+		// }
 
-		}
+		// self.applyTenVoucher = function(){
 
-		ngCart.applyFifteenVoucher = function(){
+		// }
 
-		}
+		// self.applyFifteenVoucher = function(){
+
+		// }
 
 }])
 

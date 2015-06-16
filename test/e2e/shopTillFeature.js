@@ -1,7 +1,7 @@
 describe('ShopTillYouDrop homepage', function() {
 	beforeEach(function(){
     browser.get('http://localhost:3000');
-    var voucher = browser.findElement(protractor.By.model('voucher'))
+    // var voucher = browser.findElement(protractor.By.model('voucher'))
 	});
 	
   it('has a title', function() {
