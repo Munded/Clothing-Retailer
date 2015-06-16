@@ -114,7 +114,7 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 
 	self.isEmpty = function() {
 		if(self.shoppingCart.length > 0){
-			return false
+			self.emptyCart = false
 		}
 	}
 

@@ -114,7 +114,7 @@
 
 <hr/>
   
-  <div class="table-responsive col-lg-12" >
+  <div class="table-responsive col-lg-12" ng-hide="ctrl.emptyCart" class="ng-show">
 
         <table class="table table-striped ">
 
@@ -134,7 +134,6 @@
                 <td></td>
                 <td>Subtotal:</td>
                 <td>{{ ctrl.subTotalPrice }}</td>
-
             </tr>
             <tr>
               <td></td>
@@ -142,6 +141,20 @@
               <td></td>
               <td>Total:</td>
               <td>{{ ctrl.totalPrice }}</td>
+            </tr>
+              <tr class="vouchers">
+                <td>
+                  <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
+                  </a>
+                  <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
+                  </a>
+                  <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
+                  </a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             </tfoot>
             <tbody>
@@ -156,19 +169,6 @@
                 <td>{{ item.price}}</td>
                 
             </tr>
-             <ul class="vouchers">
-                <li>
-                  <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
-                  </a>
-                </li>
-                <li>
-                  <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
-                  </a>
-                </li>
-                <li>
-                  <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
-                  </a>
-                </li>
             </tr>
             </tbody>
         </table>
