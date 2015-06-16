@@ -20,7 +20,7 @@
     <h1 class="navbar-brand" href="/ "> Shop Till You Drop </h1>
 <!--       <li ng-class="{active: $state.is('site.cart')}"> cart </li> -->
         <a class-"navbar-nav navbar-right" href="/cart">
-          <h4>{{ctrl.totalPrice}}</h4>
+          <h4>£{{ctrl.totalPrice}}</h4>
         </a>
   </div>
 
@@ -113,66 +113,72 @@
 
 
 <hr/>
-  
-  <div class="table-responsive col-lg-12" ng-hide="ctrl.emptyCart" class="ng-show">
 
-        <table class="table table-striped ">
+  <section id="cart">
 
-            <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Quantity</th>
-                <th>Amount</th>
-                <th>Total</th>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Subtotal:</td>
-                <td>{{ ctrl.subTotalPrice }}</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>Total:</td>
-              <td>{{ ctrl.totalPrice }}</td>
-            </tr>
-              <tr class="vouchers">
-                <td>
-                  <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
-                  </a>
-                  <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
-                  </a>
-                  <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
-                  </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr ng-repeat="item in ctrl.shoppingCart track by $index">
-                <td><span ng-click="ctrl.removeItemFromCart(item)" class="glyphicon glyphicon-remove"></span></td>
+      <div class="alert alert-warning" role="alert" ng-show="ctrl.totalPrice === 0">
+            Your cart is empty
+        </div>
 
-                <td>{{ item.name }}</td>
-                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.quantity == 1}"
-                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
-                    {{ item.quantity }}&nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
-                <td>{{ item.price}}</td>
-                
-            </tr>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+      <div  class="table-responsive col-lg-12" ng-show="ctrl.totalPrice > 0">
+
+            <table class="table table-striped ">
+
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Subtotal:</td>
+                    <td>£{{ ctrl.subTotalPrice }}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total:</td>
+                  <td>£{{ ctrl.totalPrice }}</td>
+                </tr>
+                  <tr class="vouchers">
+                    <td>
+                      <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
+                      </a>
+                      <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
+                      </a>
+                      <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
+                      </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr ng-repeat="item in ctrl.shoppingCart track by $index">
+
+                    <td><span ng-click="ctrl.removeItemFromCart(item)" class="glyphicon glyphicon-remove"></span>{{ item.name }}</td>
+                    <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.quantity == 1}"
+                              ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                        {{ item.quantity }}&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                    <td>{{ item.price}}</td>
+                    
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+      </section>
         
     <h3>Checkout <span> (ngcart-checkout)</span></h3>
         

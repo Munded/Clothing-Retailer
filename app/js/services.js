@@ -1,7 +1,7 @@
 shopTillYouDrop.factory('Inventory', function($http){
   return {
     getItems: function() {
-      return $http.get('../inventory/inventory.json');
+      return $http.get('app/inventory/inventory.json');
       }
     };
   });

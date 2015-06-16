@@ -94,12 +94,6 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 				category: "Women’s Formalwear",
 				price: 540,
 				quantity: 5
-			},
-			{
-				id: 14,
-				name: "Five Pounds Off",
-				category: "Voucher",
-				price: -5
 			}]
 
 	self.shoppingCart = [];
