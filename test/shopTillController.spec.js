@@ -75,7 +75,9 @@ describe('ShopTillController', function() {
 			ctrl.removeItemFromCart(item1)
 			expect(ctrl.subTotalPrice).toEqual(42)
 		})
+	});
 
+	describe('Applying Vouchers: it ', function() {
 		it('can apply a five pound discount', function() {
 			ctrl.addItemToCart(item1)
 			ctrl.addFiveVoucher()
@@ -84,15 +86,27 @@ describe('ShopTillController', function() {
 		});
 
 		it('can apply a ten pound discount', function() {
-			ctrl.addItemToCart(item1)
-			ctrl.addTenVoucher()
-			expect(ctrl.subTotalPrice).toEqual(99)
-			expect(ctrl.totalPrice).toEqual(89)
+			ctrl.addItemToCart(item1);
+			ctrl.addTenVoucher();
+			expect(ctrl.subTotalPrice).toEqual(99);
+			expect(ctrl.totalPrice).toEqual(89);
 		});
 
 		it('will raise an error if not eligible for 10 pound discount', function(){
-			ctrl.addItemToCart(item2)
+			ctrl.addItemToCart(item2);
 			expect( function() { ctrl.addTenVoucher() } ).toThrow(new Error("Not Eligible for £10 discount"))
+		});
+
+		it('can apply a 15 pound discount', function() {
+			ctrl.addItemToCart(item1);
+			ctrl.addFifteenVoucher();
+			expect(ctrl.subTotalPrice).toEqual(99);
+			expect(ctrl.totalPrice).toEqual(84);
+		});
+
+		it('will raise an error if not eligible for 10 pound discount', function(){
+			ctrl.addItemToCart(item2);
+			expect( function() { ctrl.addFifteenVoucher() } ).toThrow(new Error("Not Eligible for £15 discount"))
 		});
 	});
 });

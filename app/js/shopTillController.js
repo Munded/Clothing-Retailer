@@ -104,6 +104,16 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 	self.totalPrice = 0;
 	self.fivePoundVoucher = false;
 	self.tenPoundVoucher = false;
+	self.fifteenPoundVoucher = false;
+	self.containingShoes = false;
+
+	self.checkForShoes = function() {
+		for(j=0; j < self.shoppingCart.length; j++){
+			if(self.shoppingCart[j].category === 'Women’s Footwear'){
+				self.containingShoes = true;
+			};
+		};
+	};
 
 	self.addItemToCart = function(item) {
 		self.shoppingCart.push(item)
@@ -121,7 +131,7 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 
 	self.calcSubTotal = function() {
 		return self.shoppingCart.map(function(item) {
-			return parseFloat(item.price);
+			return parseFloat(item.price)
 		}).reduce(function(old, now) {
 			return old + now;
 		},0);
@@ -133,10 +143,16 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 
 	self.setTotal = function() {
 		self.setSubTotal()
+		self.checkForShoes()
 		if(self.fivePoundVoucher){
 			self.totalPrice = self.subTotalPrice - 5
 		} else if(self.tenPoundVoucher){
 			self.totalPrice = self.subTotalPrice - 10
+		} else if(self.fifteenPoundVoucher){
+			self.totalPrice = self.subTotalPrice - 15
+		}
+		else{
+			self.totalPrice = self.subTotalPrice
 		}
 	}
 
@@ -152,6 +168,16 @@ shopTillYouDrop.controller('ShopTillController', ['$http', function($http){
 		}
 		else {
 			throw new Error("Not Eligible for £10 discount")
+		}
+	}
+
+	self.addFifteenVoucher = function() {
+		if(self.subTotalPrice >= 75  && self.containingShoes) {
+			self.fifteenPoundVoucher = true;
+			self.setTotal();
+		}
+		else {
+			throw new Error("Not Eligible for £15 discount")
 		}
 	}
 
