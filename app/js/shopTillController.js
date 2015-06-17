@@ -1,4 +1,4 @@
-shopTillYouDrop.controller('ShopTillController', ['$http', 'Inventory', 'stripe', function($http, Inventory, stripe){
+shopTillYouDrop.controller('ShopTillController', ['$http', 'Inventory', 'Flash', function($http, Inventory, Flash){
 	var self = this;
 
 	self.inventory = []
@@ -19,6 +19,7 @@ Inventory.getItems().success(setInventory);
 	self.emptyCart = true
 
 
+
 	self.isEmpty = function() {
 		if(self.shoppingCart.length > 0){
 			self.emptyCart = false
@@ -33,20 +34,19 @@ Inventory.getItems().success(setInventory);
 		};
 	};
 
+	
 	self.addItemToCart = function(item) {
-		// item.quantity = 1
-		self.shoppingCart.push(item)
-		// findItem = self.shoppingCart.indexOf(item)
-		// self.shoppingCart[findItem].quantity = 1
-		// item.quantity --
+		var cartItem = {"id": item.id, "name": item.name, "price": item.price, "quantity": 1}
+		self.shoppingCart.push(cartItem)
+		var shopItem = self.inventory.indexOf(item)
+		self.inventory[shopItem].quantity --
 		self.setTotal()
 	};
 
-	// self.increaseQuantity = function(item) {
-	// 	findItem = self.shoppingCart.indexOf(item)
-	// 	self.shoppingCart[findItem].quantity ++
-
-	// };
+	self.increaseQuantity = function(item) {
+		findItem = self.shoppingCart.indexOf(item)
+		self.shoppingCart[findItem].quantity 
+	};
 
 	self.removeItemFromCart = function(item) {
 		for(i=0; i < self.shoppingCart.length; i++){
@@ -58,13 +58,12 @@ Inventory.getItems().success(setInventory);
 	};
 
 	self.calcSubTotal = function() {
-		return self.shoppingCart.map(function(item) {
-			return parseFloat(item.price)
-		}).reduce(function(old, now) {
-			return old + now;
-		},0);
-	};
-
+    var total = 0;
+    for(i=0;i<self.shoppingCart.length;i++){
+        total += (self.shoppingCart[i].price * self.shoppingCart[i].quantity);
+    }
+    return total;
+};
 	self.setSubTotal = function() {
 		self.subTotalPrice = self.calcSubTotal();
 	}
@@ -86,51 +85,64 @@ Inventory.getItems().success(setInventory);
 	}
 
 	self.addFiveVoucher = function() {
+		Flash.dismiss()
 		self.fivePoundVoucher = true
 		self.setTotal()
+		self.voucherSuccess()
 	}
 
 	self.addTenVoucher = function() {
+		Flash.dismiss()
 		if(self.subTotalPrice >= 50) {
 			self.tenPoundVoucher = true
 			self.setTotal()
+			self.voucherSuccess()
 		}
 		else {
-			throw new Error("Not Eligible for £10 discount")
+			var message = '<strong>Not Eligible for £10 discount!</strong> Only applicable if you are spending over £50';
+      Flash.create('danger', message);
 		}
 	}
 
 	self.addFifteenVoucher = function() {
+		Flash.dismiss()
 		if(self.subTotalPrice >= 75  && self.containingShoes) {
 			self.fifteenPoundVoucher = true;
 			self.setTotal();
+			self.voucherSuccess()
 		}
 		else {
-			throw new Error("Not Eligible for £15 discount")
+			var message = '<strong>Not Eligible for £15 discount!</strong> Only applicable if you are spending over £75 and buying a pair of shoes';
+       Flash.create('danger', message);
 		}
 	}
 
-	self.charge = function () {
-    return stripe.card.createToken(self.payment.card)
-      .then(function (token) {
-        console.log('token created for card ending in ', token.card.last4);
-        var payment = angular.copy(self.payment);
-        payment.card = void 0;
-        payment.token = token.id;
-        return $http.post('https://yourserver.com/payments', payment);
-      })
-      .then(function (payment) {
-        console.log('successfully submitted payment for $', payment.amount);
-      })
-      .catch(function (err) {
-        if (err.type && /^Stripe/.test(err.type)) {
-          console.log('Stripe error: ', err.message);
-        }
-        else {
-          console.log('Other error occurred, possibly with your API', err.message);
-        }
-      });
-  };
+	self.voucherSuccess = function() {
+		var message = '<strong>Enjoy!</strong> Your Voucher has been applied';
+		Flash.create('success', message);
+	}
+
+	// self.charge = function () {
+ //    return stripe.card.createToken(self.payment.card)
+ //      .then(function (token) {
+ //        console.log('token created for card ending in ', token.card.last4);
+ //        var payment = angular.copy(self.payment);
+ //        payment.card = void 0;
+ //        payment.token = token.id;
+ //        return $http.post('https://yourserver.com/payments', payment);
+ //      })
+ //      .then(function (payment) {
+ //        console.log('successfully submitted payment for $', payment.amount);
+ //      })
+ //      .catch(function (err) {
+ //        if (err.type && /^Stripe/.test(err.type)) {
+ //          console.log('Stripe error: ', err.message);
+ //        }
+ //        else {
+ //          console.log('Other error occurred, possibly with your API', err.message);
+ //        }
+ //      });
+ //  };
 
 }])
 

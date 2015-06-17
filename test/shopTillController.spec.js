@@ -1,5 +1,8 @@
 describe('ShopTillController', function() {
-	beforeEach(module('ShopTill'));
+	beforeEach(function(){
+		module('ShopTill')
+		module('flash')
+	});
 
 	var ctrl;
 
