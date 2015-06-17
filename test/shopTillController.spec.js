@@ -28,12 +28,12 @@ describe('ShopTillController', function() {
 		};
 	}));
 
-	describe('when visiting the homepage', function() {
+	// describe('when visiting the homepage', function() {
 
-		it('displays items', function() {
-			expect(ctrl.inventory).toContain(item1)
-		});
-	});
+	// 	it('displays items', function() {
+	// 		expect(ctrl.inventory).toContain(item1)
+	// 	});
+	// });
 
 	describe('the shopping cart', function() {
 		it('starts with an empty cart', function() {
@@ -47,8 +47,15 @@ describe('ShopTillController', function() {
 
 		it('can add an item to the cart', function() {
 			ctrl.addItemToCart(item1)
-			expect(ctrl.shoppingCart).toEqual([item1])
+			expect(ctrl.shoppingCart).toEqual([item1]);
+			expect(ctrl.shoppingCart[0].quantity).toEqual(1);
 		});
+
+		// it('can increase quantity in cart', function() {
+		// 	ctrl.addItemToCart(item1)
+		// 	ctrl.increaseQuantity(item1)
+		// 	expect(ctrl.shoppingCart[0].quantity).toEqual(2);
+		// })
 
 		it('can remove an item from the cart', function() {
 			ctrl.addItemToCart(item1)

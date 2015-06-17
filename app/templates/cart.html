@@ -1,71 +1,73 @@
-<div class="Modal-box">
-    <div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
-        Your cart is empty
-    </div>
+<section id="cart">
 
-    <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
+      <div class="alert alert-warning" role="alert" ng-show="ctrl.totalPrice === 0">
+            Your cart is empty
+        </div>
 
-        <table class="table table-striped ngCart cart">
+      <div  class="table-responsive col-lg-12" ng-show="ctrl.totalPrice > 0">
 
-            <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Quantity</th>
-                <th>Amount</th>
-                <th>Total</th>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr ng-show="ngCart.getTax()">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
-                <td>{{ ngCart.getTax() | currency }}</td>
-            </tr>
-            <tr ng-show="ngCart.getShipping()">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Shipping:</td>
-                <td>{{ ngCart.getShipping() | currency }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total:</td>
-                <td>{{ ngCart.totalCost() | currency }}</td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr ng-repeat="item in ngCart.getCart().items track by $index">
-                <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
+            <table class="table table-striped ">
 
-                <td>{{ item.getName() }}</td>
-                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
-                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
-                <td>{{ item.getPrice() | currency}}</td>
-                <td>{{ item.getTotal() | currency }}</td>
-            </tr>
-             <ul class="vouchers">
-                <li>
-                  <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ngCart.applyFiveVoucher()">£5 off voucher
-                  </a>
-                </li>
-                <li>
-                  <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ngCart.applyTenVoucher()">£10 off voucher
-                  </a>
-                </li>
-                <li>
-                  <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ngCart.applyFifteenVoucher()">£15 off voucher
-                  </a>
-                </li>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Subtotal:</td>
+                    <td>£{{ ctrl.subTotalPrice }}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total:</td>
+                  <td>£{{ ctrl.totalPrice }}</td>
+                </tr>
+                  <tr class="vouchers">
+                    <td>
+                      <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
+                      </a>
+                      <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
+                      </a>
+                      <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
+                      </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr ng-repeat="item in ctrl.shoppingCart track by $index">
+
+                    <td><span ng-click="ctrl.removeItemFromCart(item)" class="glyphicon glyphicon-remove"></span></td>
+                    <td>{{ item.name }}</td>
+                    <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.quantity == 1}"
+                              ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                        {{ item.quantity }}&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                    <td>£{{ item.price }}</td>
+                    
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+      </section>

@@ -7,7 +7,8 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/ngcart/dist/ngCart.js"></script>
+<script src="https://js.stripe.com/v2/"></script>
+    <script src="/bower_components/angular-stripe/release/angular-stripe.js"></script>
     <script src="node_modules/angular-ui-router/build/angular-ui-router.min.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/shopTillController.js"></script>
@@ -155,14 +156,20 @@
                   <td>Total:</td>
                   <td>£{{ ctrl.totalPrice }}</td>
                 </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" class="btn" id="checkoutButton" ng-click="ctrl.addFifteenVoucher()">Checkout</button></td>
+                    <td></td>
+                </tr>
                   <tr class="vouchers">
                     <td>
-                      <a class="btn" id="five-pound-voucher" ng-class="ngCart.setFiveVoucher ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFiveVoucher()">£5 off voucher
-                      </a>
-                      <a class="btn" id="ten-pound-voucher" ng-class="ngCart.setTenDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addTenVoucher()">£10 off voucher
-                      </a>
-                      <a class="btn" id="fifteen-pound-voucher" ng-class="ngCart.fifteenPoundDiscount ? 'btn-success' : 'btn-danger'" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
-                      </a>
+                      <button type="button" class="btn" id="five-pound-voucher" ng-click="ctrl.addFiveVoucher()">£5 off voucher
+                      </button>
+                      <button type="button" class="btn" id="ten-pound-voucher" ng-click="ctrl.addTenVoucher()">£10 off voucher
+                      </button>
+                      <button type="button" class="btn" id="fifteen-pound-voucher" ng-click="ctrl.addFifteenVoucher()">£15 off voucher
+                      </button>
                     </td>
                     <td></td>
                     <td></td>
@@ -185,26 +192,18 @@
                 </tr>
                 </tbody>
             </table>
+    <section id="checkout"> 
+      <form stripe-form="stripeCallback" name="checkoutForm">
+        <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card" />
+        <input ng-model="expiry" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" />
+        <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
+        <button type="submit">Submit</button>
+        <div ng-if="checkoutForm.card.$invalid"> Error: invalid card number! </div>
+      </form>
+    </section>
         </div>
       </section>
-        
-    <h3>Checkout <span> (ngcart-checkout)</span></h3>
-        
-        
-        <div class="row">
-    <div class="col-xs-4">
-        <h4>service 'log'</h4>
-        <ngcart-checkout service="log">Checkout</ngcart-checkout>
-    </div>
-    <div class="col-xs-4">
-        <h4>service 'http'</h4>
-        <ngcart-checkout service="http" settings="httpSettings">Checkout </ngcart-checkout>
-    </div>
-    <div class="col-xs-4">
-        <h4>service 'paypal'</h4>
-        <ngcart-checkout service="paypal" settings="payPalSettings"></ngcart-checkout>
-    </div>
-</div>
+    
         
   </body>
 

@@ -1,4 +1,4 @@
-shopTillYouDrop.controller('ShopTillController', ['$http', 'Inventory', function($http, Inventory){
+shopTillYouDrop.controller('ShopTillController', ['$http', 'Inventory', 'stripe', function($http, Inventory, stripe){
 	var self = this;
 
 	self.inventory = []
@@ -34,9 +34,19 @@ Inventory.getItems().success(setInventory);
 	};
 
 	self.addItemToCart = function(item) {
+		// item.quantity = 1
 		self.shoppingCart.push(item)
+		// findItem = self.shoppingCart.indexOf(item)
+		// self.shoppingCart[findItem].quantity = 1
+		// item.quantity --
 		self.setTotal()
 	};
+
+	// self.increaseQuantity = function(item) {
+	// 	findItem = self.shoppingCart.indexOf(item)
+	// 	self.shoppingCart[findItem].quantity ++
+
+	// };
 
 	self.removeItemFromCart = function(item) {
 		for(i=0; i < self.shoppingCart.length; i++){
@@ -100,6 +110,27 @@ Inventory.getItems().success(setInventory);
 		}
 	}
 
+	self.charge = function () {
+    return stripe.card.createToken(self.payment.card)
+      .then(function (token) {
+        console.log('token created for card ending in ', token.card.last4);
+        var payment = angular.copy(self.payment);
+        payment.card = void 0;
+        payment.token = token.id;
+        return $http.post('https://yourserver.com/payments', payment);
+      })
+      .then(function (payment) {
+        console.log('successfully submitted payment for $', payment.amount);
+      })
+      .catch(function (err) {
+        if (err.type && /^Stripe/.test(err.type)) {
+          console.log('Stripe error: ', err.message);
+        }
+        else {
+          console.log('Other error occurred, possibly with your API', err.message);
+        }
+      });
+  };
 
 }])
 

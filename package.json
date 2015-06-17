@@ -4,6 +4,8 @@
   "description": "",
   "main": "Gruntfile.js",
   "dependencies": {
+    "angular": "^1.4.1",
+    "angular-stripe": "^4.2.8",
     "angular-ui-router": "^0.2.15",
     "express": "^4.12.4",
     "grunt": "^0.4.5",
