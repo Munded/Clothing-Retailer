@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Shop Till You Drop</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/app/public/css/css.css">
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
@@ -17,23 +18,24 @@
   <body ng-controller="ShopTillController as ctrl" >
   <div class="navbar navbar-inverse navbar-fixed-top">
     <h1 class="navbar-brand" href="/ "> Shop Till You Drop </h1>
-<!--       <li ng-class="{active: $state.is('site.cart')}"> cart </li> -->
-        <span class-"navbar-nav navbar-right" href="/cart">
-          <h4>£{{ctrl.totalPrice}}</h4>
+        <span class-"navbar-nav navbar-right" id="cartSummary">
+          <h4>{{ctrl.totalPrice | currency: "£" }}</h4>
         </span>
   </div>
 
-<!--   <div ui-view="modal" autoscroll="false"></div>
-  </div> -->
+
   <section class="container">
-      <div class="row"> 
-    <h3 id="wf">Women’s Footwear</h3>
+    <div class="row"> 
+      <h3 id="wf">Women’s Footwear</h3>
         <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Footwear'}">
-          <li class="list-group-item">
-            <p>Name: {{item.name}} </p>
-            <p>Price: £{{item.price}} </p>
-            <p>Quantity: {{item.quantity}} </p>
-            <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
+          <li class="list-group-item inventory">
+            <div class="inner">
+              <p><img ng-src="{{item.image}}" /><p>
+              <p>Name: {{item.name}} </p>
+              <p>Price: {{item.price  | currency: "£" }} </p>
+              <p>Quantity: {{item.quantity}} </p>
+              <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
+            </div>
           </li>
         </ul>
       </div>
@@ -43,11 +45,12 @@
       <div class="row"> 
     <h3>Women’s Casualwear</h3>
       <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Casualwear'}">
-        <li class="list-group-item">
-          <p>Name: {{item.name}} </p>
-          <p>Price: £{{item.price}} </p>
-          <p>Quantity: {{item.quantity}} </p>
-          <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
+        <li class="list-group-item inventory">
+            <p><img ng-src="{{item.image}}" /><p>
+            <p>Name: {{item.name}} </p>
+            <p>Price: {{item.price | currency: "£"}} </p>
+            <p>Quantity: {{item.quantity}} </p>
+            <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
         </li>
       </ul>
     </div>
@@ -57,9 +60,10 @@
       <div class="row"> 
     <h3>Women’s Formalwear</h3>
       <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Formalwear'}">
-        <li class="list-group-item">
+        <li class="list-group-item inventory">
+          <p><img ng-src="{{item.image}}" /><p>
           <p>Name: {{item.name}} </p>
-          <p>Price: £{{item.price}} </p>
+          <p>Price: {{item.price | currency: "£"}} </p>
           <p>Quantity: {{item.quantity}} </p>
           <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
         </li>
@@ -71,9 +75,10 @@
       <div class="row"> 
       <h3>Men’s Footwear</h3>
         <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Footwear'}">
-          <li class="list-group-item">
+          <li class="list-group-item inventory">
+            <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
-            <p>Price: £{{item.price}} </p>
+            <p>Price: {{item.price | currency: "£"}} </p>
             <p>Quantity: {{item.quantity}} </p>
             <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
@@ -86,9 +91,10 @@
       <div class="row"> 
       <h3>Men’s Casualwear</h3>
         <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Casualwear'}">
-          <li class="list-group-item">
+          <li class="list-group-item inventory">
+            <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
-            <p>Price: £{{item.price}} </p>
+            <p>Price: {{item.price | currency: "£"}} </p>
             <p>Quantity: {{item.quantity}} </p>
             <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
@@ -100,9 +106,10 @@
       <div class="row"> 
       <h3>Men’s Formalwear</h3>
         <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Formalwear'}">
-          <li class="list-group-item">
+          <li class="list-group-item inventory">
+            <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
-            <p>Price: £{{item.price}} </p>
+            <p>Price: {{item.price | currency: "£"}} </p>
             <p>Quantity: {{item.quantity}} </p>
             <button type="button" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1" quantity-max="30" data="item" ng-click="ctrl.addItemToCart(item)">Add to Cart</button>
           </li>
@@ -113,17 +120,16 @@
 
 <hr/>
 
-  <section id="cart" class="row">
-
+<section class="container-fluid table-responsive col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" id="cart">
       <div class="alert alert-warning" role="alert" ng-show="ctrl.totalPrice === 0">
-            Your cart is empty
+            There are no items in your Cart
         </div>
 
-      <div  class="container-fluid table-responsive col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" ng-show="ctrl.totalPrice > 0">
+      <div ng-show="ctrl.totalPrice > 0">
 
     <table class="row table table-striped ">
 
-                <thead class="col-md-4">
+                <thead >
                 <tr>
                     <th></th>
                     <th>Name</th>
@@ -131,16 +137,16 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody class="col-md-4">
+                <tbody >
                 <tr ng-repeat="item in ctrl.shoppingCart track by $index">
                     <td><span ng-click="ctrl.removeItemFromCart(item)" class="glyphicon glyphicon-remove"></span></td>
                     <td>{{ item.name }}</td>
-                    <td>£{{ item.price }}</td>
+                    <td>{{ item.price | currency: "£"}}</td>
                     <td></td>
                 </tr>
                 </tr>
                 </tbody>
-                <tfoot class="col-md-4">
+                <tfoot >
                   <tr>
                     <td></td>
                     <td></td>
@@ -151,13 +157,13 @@
                     <td></td>
                     <td></td>
                     <td>Subtotal:</td>
-                    <td>£{{ ctrl.subTotalPrice }}</td>
+                    <td>{{ ctrl.subTotalPrice | currency: "£"}}</td>
                 </tr>
                 <tr>
                   <td></td>
                   <td></td>
                   <td>Total:</td>
-                  <td>£{{ ctrl.totalPrice }}</td>
+                  <td>{{ ctrl.totalPrice | currency: "£"}}</td>
                 </tr>
                  <tr>
                     <td></td>
@@ -167,9 +173,8 @@
                 </tr>
                   <tr class="vouchers">
                     <td>
-                      <td>
-                        <button type="button" class="btn" id="five-pound-voucher" ng-click="ctrl.addFiveVoucher()">£5 off voucher
-                        </button>
+                      <button type="button" class="btn" id="five-pound-voucher" ng-click="ctrl.addFiveVoucher()">£5 off voucher
+                      </button>
                     </td>
                       <td>
                         <button type="button" class="btn" id="ten-pound-voucher" ng-click="ctrl.addTenVoucher()">£10 off voucher
@@ -181,10 +186,12 @@
                       </td>
                     <td></td>
                 </tr>
+                <tr>
+                  <div id="message" flash-message="10000"></div>
+                </tr>
                 </tfoot>
             </table>
-
-            <div flash-message="10000"></div>
+              </cart>
 
 
     <section id="checkout"> 

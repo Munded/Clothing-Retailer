@@ -16,7 +16,7 @@ describe('ShopTillYouDrop homepage', function() {
   describe('it can add items to cart', function() {
 
 	 	it('displays an empty cart when no items added', function() {
-			expect(element(by.id('cart')).getText()).toContain('Your cart is empty');
+			expect(element(by.id('cart')).getText()).toContain('There are no items in your Cart');
 	  });
 
 		it('can add an item to the shopping basket', function() {
@@ -31,7 +31,7 @@ describe('ShopTillYouDrop homepage', function() {
 			get(0).
 			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
 			element(by.css('.glyphicon-remove')).click()
-			expect(element(by.id('cart')).getText()).toContain('Your cart is empty');
+			expect(element(by.id('cart')).getText()).toContain('There are no items in your Cart');
 		});
 
 		it('can calculate total', function() {
@@ -52,6 +52,38 @@ describe('ShopTillYouDrop homepage', function() {
 			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
 			element(by.id('five-pound-voucher')).click();
 			expect(element(by.id('cart')).getText()).toContain('94');
+		});
+
+		it('can take 10 pounds off', function() {
+			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
+			get(0).
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			element(by.id('ten-pound-voucher')).click();
+			expect(element(by.id('cart')).getText()).toContain('89');
+		});
+
+		it('will raise an error if not eligible for 10 pound discount', function() {
+			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
+			get(1).
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			element(by.id('ten-pound-voucher')).click();
+			expect(element(by.id('message')).getText()).toContain('Not Eligible for £10 discount!');
+		});
+
+		it('can take 15 pounds off', function() {
+			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
+			get(0).
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			element(by.id('fifteen-pound-voucher')).click();
+			expect(element(by.id('cart')).getText()).toContain('84');
+		});
+
+		it('will raise an error if not eligible for 15 pound discount', function() {
+			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Women’s Footwear'}")).
+			get(1).
+			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			element(by.id('fifteen-pound-voucher')).click();
+			expect(element(by.id('message')).getText()).toContain('Not Eligible for £15 discount!');
 		});
 	});
 });

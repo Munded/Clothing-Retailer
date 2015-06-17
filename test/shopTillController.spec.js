@@ -1,8 +1,5 @@
 describe('ShopTillController', function() {
-	beforeEach(function(){
-		module('ShopTill')
-		module('flash')
-	});
+	beforeEach(module('ShopTill'));
 
 	var ctrl;
 
@@ -31,12 +28,18 @@ describe('ShopTillController', function() {
 		};
 	}));
 
-	// describe('when visiting the homepage', function() {
+	beforeEach(module(function ($provide) {
+    $provide.value('flash', {
+        someVariable: 1
+    });
+  }));
 
-	// 	it('displays items', function() {
-	// 		expect(ctrl.inventory).toContain(item1)
-	// 	});
-	// });
+	describe('when visiting the homepage', function() {
+
+		it('displays items', function() {
+			expect(ctrl.inventory).toContain(item1)
+		});
+	});
 
 	describe('the shopping cart', function() {
 		it('starts with an empty cart', function() {

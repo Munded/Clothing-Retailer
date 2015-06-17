@@ -36,16 +36,16 @@ Inventory.getItems().success(setInventory);
 
 	
 	self.addItemToCart = function(item) {
-		var cartItem = {"id": item.id, "name": item.name, "price": item.price, "quantity": 1}
-		self.shoppingCart.push(cartItem)
-		var shopItem = self.inventory.indexOf(item)
-		self.inventory[shopItem].quantity --
-		self.setTotal()
-	};
-
-	self.increaseQuantity = function(item) {
-		findItem = self.shoppingCart.indexOf(item)
-		self.shoppingCart[findItem].quantity 
+		if(item.quantity > 0) {
+			var cartItem = {"id": item.id, "name": item.name, "price": item.price, "quantity": 1}
+			self.shoppingCart.push(cartItem)
+			var shopItem = self.inventory.indexOf(item)
+			self.inventory[shopItem].quantity --
+			self.setTotal()
+		} else {
+			var message = '<strong>Sorry</strong> Item is out of stock';
+			Flash.create('danger', message);
+		}
 	};
 
 	self.removeItemFromCart = function(item) {
@@ -121,28 +121,6 @@ Inventory.getItems().success(setInventory);
 		var message = '<strong>Enjoy!</strong> Your Voucher has been applied';
 		Flash.create('success', message);
 	}
-
-	// self.charge = function () {
- //    return stripe.card.createToken(self.payment.card)
- //      .then(function (token) {
- //        console.log('token created for card ending in ', token.card.last4);
- //        var payment = angular.copy(self.payment);
- //        payment.card = void 0;
- //        payment.token = token.id;
- //        return $http.post('https://yourserver.com/payments', payment);
- //      })
- //      .then(function (payment) {
- //        console.log('successfully submitted payment for $', payment.amount);
- //      })
- //      .catch(function (err) {
- //        if (err.type && /^Stripe/.test(err.type)) {
- //          console.log('Stripe error: ', err.message);
- //        }
- //        else {
- //          console.log('Other error occurred, possibly with your API', err.message);
- //        }
- //      });
- //  };
 
 }])
 

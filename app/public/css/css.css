@@ -1,0 +1,39 @@
+img {
+	max-width: 250px;
+	max-height: 300px;
+	}
+
+#wf {
+	 margin-top: 15%;
+}
+
+#cart {
+	border: solid;
+  border-radius: 20px;
+  padding: 20px;
+/*  float: right;
+  position: static;
+  top: 0;
+  z-index: 999;*/
+}
+
+#cartSummary {
+	color: lightblue;
+  float: right;
+  font-size: 30px;
+  padding-right: 38px;
+}
+
+.inventory {
+	border: solid;
+  width: 287px;
+  margin: 100px 100px;
+  height: 350px;
+}
+
+.inner {
+	margin: 0 auto;
+}
+
+
+
