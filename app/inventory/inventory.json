@@ -3,15 +3,15 @@
 		"id": 1,
 		"name": "Almond Toe Court Shoes, Patent Black",
 		"image": "app/public/images/Almond-Toe-Court-Shoes.jpeg",
-	  "category": "Women’s Footwear",
+	  "category": "Female Footwear",
 	  "price": 99,
 	  "quantity": 5
 	},
 	{
 		"id": 2,
 		"name": "Suede Shoes, Blue",
-		"image": "app/public/images/blue-suede-shoes.jpg",
-		"category": "Women’s Footwear",
+		"image": "app/public/images/blue-suede-shoes.jpeg",
+		"category": "Female Footwear",
 	  "price": 42,
 	  "quantity": 4
 	},
@@ -43,7 +43,7 @@
 		"id": 6,
 		"name": "Gold Button Cardigan, Black",
 		"image": "app/public/images/gold-button-cardigan.jpg",
-		"category": "Women’s Casualwear",
+		"category": "Female Casualwear",
 		"price": 167,
 		"quantity": 6
 	},
@@ -51,7 +51,7 @@
 		"id": 7,
 		"name": "Cotton Shorts, Medium Red",
 		"image": "app/public/images/red-cotton-shorts.jpg",
-		"category": "Women’s Casualwear",
+		"category": "Female Casualwear",
 		"price": 30,
 		"quantity": 5
 	},
@@ -91,7 +91,7 @@
 		"id": 12,
 		"name": "Bird Print Dress, Black",
 		"image": "app/public/images/bird-print-dress.jpeg",
-		"category": "Women’s Formalwear",
+		"category": "Female Formalwear",
 		"price": 270,
 		"quantity": 10
 	},
@@ -99,7 +99,7 @@
 		"id": 13,
 		"name": "Mid Twist Cut-Out Dress, Pink",
 		"image": "app/public/images/pink-twist-dress.jpg",
-		"category": "Women’s Formalwear",
+		"category": "Female Formalwear",
 		"price": 540,
 		"quantity": 5
 	}
