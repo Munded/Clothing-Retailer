@@ -1,6 +1,7 @@
 shopTillYouDrop.controller('ShopTillController', ['$http', 'Inventory', 'Flash', function($http, Inventory, Flash){
 	var self = this;
 
+// processing json object
 	self.inventory = []
 
 var setInventory = function(data) {
@@ -9,6 +10,7 @@ var setInventory = function(data) {
 
 Inventory.getItems().success(setInventory);
 
+//initialising 
 	self.shoppingCart = [];
 	self.subTotalPrice = 0;
 	self.totalPrice = 0;
@@ -19,6 +21,7 @@ Inventory.getItems().success(setInventory);
 	self.emptyCart = true
 
 
+//checking state of cart
 
 	self.isEmpty = function() {
 		if(self.shoppingCart.length > 0){
@@ -34,7 +37,8 @@ Inventory.getItems().success(setInventory);
 		};
 	};
 
-	
+// adding and removing items from cart
+
 	self.addItemToCart = function(item) {
 		if(item.quantity > 0) {
 			var cartItem = {"id": item.id, "name": item.name, "category": item.category, "price": item.price, "quantity": 1}
@@ -57,13 +61,16 @@ Inventory.getItems().success(setInventory);
 		self.setTotal()
 	};
 
+// calculations of price
+
 	self.calcSubTotal = function() {
     var total = 0;
     for(i=0;i<self.shoppingCart.length;i++){
         total += (self.shoppingCart[i].price * self.shoppingCart[i].quantity);
     }
     return total;
-};
+	};
+
 	self.setSubTotal = function() {
 		self.subTotalPrice = self.calcSubTotal();
 	}
@@ -71,6 +78,10 @@ Inventory.getItems().success(setInventory);
 	self.setTotal = function() {
 		self.setSubTotal()
 		self.isEmpty()
+		self.calcDiscount()
+	}
+
+	self.calcDiscount= function(){
 		if(self.fifteenPoundVoucher){
 			self.totalPrice = self.subTotalPrice - 15
 		} else if(self.tenPoundVoucher){
@@ -81,7 +92,9 @@ Inventory.getItems().success(setInventory);
 		else{
 			self.totalPrice = self.subTotalPrice
 		}
-	}
+	};
+
+	//vouchers
 
 	self.addFiveVoucher = function() {
 		Flash.dismiss()
@@ -122,8 +135,10 @@ Inventory.getItems().success(setInventory);
 		Flash.create('success', message);
 	}
 
+	//checkout message
+
 	self.checkout = function() {
-		window.alert('shopping cart is not functional at the moment')
+		window.alert('shopping cart is not available')
 	}
 
 }])
