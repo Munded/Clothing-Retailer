@@ -28,11 +28,9 @@ describe('ShopTillController', function() {
 			"name": "Leather Driver Saddle Loafers, Tan",
 			"category": "Men’s Footwear",
 			"price": 34,
-			"quantity": 2
+			"quantity": 0
 		};
 	}));
-
-
 
 	describe('the shopping cart', function() {
 		it('starts with an empty cart', function() {
@@ -50,16 +48,28 @@ describe('ShopTillController', function() {
 			expect(ctrl.shoppingCart[0].quantity).toEqual(1);
 		});
 
-		// it('can increase quantity in cart', function() {
-		// 	ctrl.addItemToCart(item1)
-		// 	ctrl.increaseQuantity(item1)
-		// 	expect(ctrl.shoppingCart[0].quantity).toEqual(2);
-		// })
+		it('adding item to inventory will decrease quantity of item in inventory', function() {
+			ctrl.addItemToCart(item1)
+			expect(ctrl.shoppingCart).toEqual([item1]);
+			expect(item1.quantity).toEqual(1);
+		});
+
+		it('cannot add an item to the cart if item is out of stock', function() {
+			ctrl.addItemToCart(item3)
+			expect(ctrl.shoppingCart).toEqual([]);
+			expect(item3.quantity).toEqual(0);
+		});
 
 		it('can remove an item from the cart', function() {
 			ctrl.addItemToCart(item1)
 			ctrl.removeItemFromCart(item1)
 			expect(ctrl.shoppingCart).toEqual([])
+		});
+
+		it('removing an item from cart will increase inventory quantity', function() {
+			ctrl.addItemToCart(item1)
+			ctrl.removeItemFromCart(item1)
+			expect(item1.quantity).toEqual(2)
 		})
 
 		it('if 2 items in car, remove only the specified item', function() {
@@ -98,14 +108,26 @@ describe('ShopTillController', function() {
 			expect(ctrl.totalPrice).toEqual(89);
 		});
 
+		it('will not apply the £10 voucher if not eligible', function() {
+			ctrl.addItemToCart(item2);
+			ctrl.addTenVoucher();
+			expect(ctrl.subTotalPrice).toEqual(42);
+			expect(ctrl.totalPrice).toEqual(42);
+		})
 
 		it('can apply a 15 pound discount', function() {
 			ctrl.addItemToCart(item1);
-			ctrl.checkForShoes()
 			ctrl.addFifteenVoucher();
 			expect(ctrl.subTotalPrice).toEqual(99);
 			expect(ctrl.totalPrice).toEqual(84);
 		});
+
+		it('will not apply the £15 voucher if not eligible', function() {
+			ctrl.addItemToCart(item2);
+			ctrl.addTenVoucher();
+			expect(ctrl.subTotalPrice).toEqual(42);
+			expect(ctrl.totalPrice).toEqual(42);
+		})
 
 	});
 });

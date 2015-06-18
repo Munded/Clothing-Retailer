@@ -1,3 +1,8 @@
+body{
+	height: 100%;
+	width: 100%;
+}
+
 img {
 	width: 250px;
 	height: 220px;
@@ -5,7 +10,7 @@ img {
 	}
 
 #wf {
-	 margin-top: 15%;
+	margin-top: 12%;
 }
 
 #cart {
@@ -13,6 +18,9 @@ img {
   border-radius: 20px;
   width: 550px;
   padding: 40px;
+  position: absolute;
+  right: 3%;
+  top: 25%;
 /*  float: right;
   position: static;
   top: 0;

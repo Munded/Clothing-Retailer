@@ -53,6 +53,7 @@ Inventory.getItems().success(setInventory);
 				self.shoppingCart.splice(i, 1);
 			}
 		}
+		item.quantity ++
 		self.setTotal()
 	};
 

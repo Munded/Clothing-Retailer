@@ -62,12 +62,12 @@ describe('ShopTillYouDrop homepage', function() {
 			expect(element(by.id('cart')).getText()).toContain('89');
 		});
 
-		it('will raise an error if not eligible for 10 pound discount', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(1).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
-			element(by.id('ten-pound-voucher')).click();
-			expect(element(by.model('flash')).getText()).toContain('Not Eligible for £10 discount!');
-		});
+		// it('will raise an error if not eligible for 10 pound discount', function() {
+		// 	element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
+		// 	get(1).
+		// 	element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+		// 	element(by.id('ten-pound-voucher')).click();
+		// 	expect(element(by.model('flash')).getText()).toContain('Not Eligible for £10 discount!');
+		// });
 	});
 });
