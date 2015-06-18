@@ -27,7 +27,7 @@
   <section class="container">
     <div class="row"> 
       <h3 id="wf">Women’s Footwear</h3>
-        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Footwear'}">
+        <ul class="list-group col-lg-3 col-md-4 col-sm-5 col-xs-6" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Footwear'}">
           <li class="list-group-item inventory">
             <div class="inner">
               <p><img ng-src="{{item.image}}" /><p>
@@ -44,7 +44,7 @@
   <section class="container">
       <div class="row"> 
     <h3>Women’s Casualwear</h3>
-      <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Casualwear'}">
+      <ul class="list-group col-lg-3 col-md-4 col-sm-5 col-xs-6" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Casualwear'}">
         <li class="list-group-item inventory">
             <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
@@ -59,7 +59,7 @@
    <section class="container">
       <div class="row"> 
     <h3>Women’s Formalwear</h3>
-      <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Formalwear'}">
+      <ul class="list-group col-lg-3 col-md-4 col-sm-5 col-xs-6" ng-repeat="item in ctrl.inventory | filter: { category:'Women’s Formalwear'}">
         <li class="list-group-item inventory">
           <p><img ng-src="{{item.image}}" /><p>
           <p>Name: {{item.name}} </p>
@@ -74,7 +74,7 @@
     <section class="container">
       <div class="row"> 
       <h3>Men’s Footwear</h3>
-        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Footwear'}">
+        <ul class="list-group col-lg-3 col-md-4 col-sm-5 col-xs-6" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Footwear'}">
           <li class="list-group-item inventory">
             <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
@@ -90,7 +90,7 @@
     <section class="container">
       <div class="row"> 
       <h3>Men’s Casualwear</h3>
-        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Casualwear'}">
+        <ul class="list-group col-lg-3 col-md-4 col-sm-5 col-xs-6" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Casualwear'}">
           <li class="list-group-item inventory">
             <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
@@ -105,7 +105,7 @@
     <section class="container">
       <div class="row"> 
       <h3>Men’s Formalwear</h3>
-        <ul class="list-group col-lg-2 col-sm-3 col-xs-4" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Formalwear'}">
+        <ul class="list-group col-lg-3 col-md-4 col-sm-5 col-xs-6" ng-repeat="item in ctrl.inventory | filter: { category:'Men’s Formalwear'}">
           <li class="list-group-item inventory">
             <p><img ng-src="{{item.image}}" /><p>
             <p>Name: {{item.name}} </p>
@@ -189,24 +189,21 @@
                 <tr>
                   <div id="message" flash-message="10000"></div>
                 </tr>
-                </tfoot>
+              </tfoot>
             </table>
-              </cart>
-
-
-    <section id="checkout"> 
-      <form stripe-form="stripeCallback" name="checkoutForm">
-        <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card" />
-        <input ng-model="expiry" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" />
-        <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
-        <button type="submit">Submit</button>
-        <div ng-if="checkoutForm.card.$invalid"> Error: invalid card number! </div>
-      </form>
-    </section>
+          </cart>
+            <section id="checkout"> 
+              <form stripe-form="stripeCallback" name="checkoutForm">
+                <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card" />
+                <input ng-model="expiry" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" />
+                <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
+                <button type="submit">Submit</button>
+                <div ng-if="checkoutForm.card.$invalid"> Error: invalid card number! </div>
+              </form>
+            </section>
         </div>
       </section>
     
-         -->
   </body>
 
   </html	

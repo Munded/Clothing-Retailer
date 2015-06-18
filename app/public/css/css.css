@@ -1,6 +1,7 @@
 img {
-	max-width: 250px;
-	max-height: 300px;
+	width: 250px;
+	height: 220px;
+	border: solid;
 	}
 
 #wf {
@@ -18,17 +19,20 @@ img {
 }
 
 #cartSummary {
-	color: lightblue;
+	color: black;
+	background-color: white;
   float: right;
   font-size: 30px;
-  padding-right: 38px;
+  padding-right: 15px;
+  margin: 20px;
+  padding-left: 10px;
+  border-radius: 7px;
 }
 
 .inventory {
 	border: solid;
   width: 287px;
-  margin: 100px 100px;
-  height: 350px;
+  height: 390px;
 }
 
 .inner {
