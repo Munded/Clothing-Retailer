@@ -28,7 +28,7 @@ Inventory.getItems().success(setInventory);
 
 	self.checkForShoes = function() {
 		for(j=0; j < self.shoppingCart.length; j++){
-			if(self.shoppingCart[j].category === "Female Footwear" || self.shoppingCart[j].category === "Men’s Footwear"){
+			if(self.shoppingCart[j].category === "Female Footwear" || self.shoppingCart[j].category === "Men's Footwear"){
 				self.containingShoes = true;
 			};
 		};

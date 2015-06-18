@@ -12,14 +12,14 @@ describe('ShopTillController', function() {
 		item1= {
 				"id": 1,
 				"name": "Almond Toe Court Shoes, Patent Black",
-		    "category": "Women’s Footwear",
+		    "category": "Female Footwear",
 				"price": 99,
 				"quantity": 2
 			};
 		item2 = {			
 				"id": 2,
 				"name": "Suede Shoes, Blue",
-				"category": "Women’s Footwear",
+				"category": "Female Footwear",
 				"price": 42,
 				"quantity": 2
 			};
@@ -101,6 +101,7 @@ describe('ShopTillController', function() {
 
 		it('can apply a 15 pound discount', function() {
 			ctrl.addItemToCart(item1);
+			ctrl.checkForShoes()
 			ctrl.addFifteenVoucher();
 			expect(ctrl.subTotalPrice).toEqual(99);
 			expect(ctrl.totalPrice).toEqual(84);
