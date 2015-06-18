@@ -8,7 +8,7 @@ before_script:
   - npm start > /dev/null &
   - npm install -g bower
   - bower install
-  - npm run update-webdriver --standalone
+  - webdriver-manager start --standalone
   - sleep 1 # give server time to start
 
 script:
