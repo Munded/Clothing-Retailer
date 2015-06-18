@@ -10,5 +10,5 @@ before_script:
   - bower install
 
 script:
- - node_modules/.bin/karma start test/karma.conf.js --no-auto-watch --reporters=dots --browsers=Chrome
- - node_modules/.bin/protractor e2e-tests/protractor.conf.js --browser=chrome
+ - node_modules/.bin/karma start test/karma.conf.js
+ - node_modules/.bin/protractor e2e-tests/protractor.conf.js
