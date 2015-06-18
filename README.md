@@ -1,7 +1,8 @@
+[![Build Status](https://travis-ci.org/Munded/Clothing-Retailer.svg?branch=master)](https://travis-ci.org/Munded/Clothing-Retailer)
+[![Code Climate](https://codeclimate.com/github/Munded/Clothing-Retailer/badges/gpa.svg)](https://codeclimate.com/github/Munded/Clothing-Retailer)
+[![Test Coverage](https://codeclimate.com/github/Munded/Clothing-Retailer/badges/coverage.svg)](https://codeclimate.com/github/Munded/Clothing-Retailer/coverage)
 #Shop Till You Drop
 
-[![Code Climate](https://codeclimate.com/github/Munded/Clothing-Retailer/badges/gpa.svg)](https://codeclimate.com/github/Munded/Clothing-Retailer)
-[![Build Status](https://travis-ci.org/Munded/Clothing-Retailer.svg?branch=master)](https://travis-ci.org/Munded/Clothing-Retailer)
 
 ![Shop Till You Drop](https://github.com/Munded/Clothing-Retailer/blob/master/app/public/images/Screen%20Shot%202015-06-18%20at%2019.06.08.png)
 
