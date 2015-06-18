@@ -13,4 +13,4 @@ before_script:
 
 script:
   - node_modules/.bin/karma start test/karma.conf.js --no-auto-watch --single-run --reporters=dots
-  - node_modules/.bin/protractor e2e/tests/protractor.conf.js 
+  - node_modules/.bin/protractor test/e2e/protractor.conf.js 
