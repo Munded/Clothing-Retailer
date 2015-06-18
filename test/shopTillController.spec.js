@@ -1,5 +1,9 @@
 describe('ShopTillController', function() {
-	beforeEach(module('ShopTill'));
+	beforeEach(function(){
+		module('ShopTill');
+		module('flash');
+	});
+
 
 	var ctrl;
 
@@ -10,36 +14,25 @@ describe('ShopTillController', function() {
 				"name": "Almond Toe Court Shoes, Patent Black",
 		    "category": "Women’s Footwear",
 				"price": 99,
-				"quantity": 5
+				"quantity": 2
 			};
 		item2 = {			
 				"id": 2,
 				"name": "Suede Shoes, Blue",
 				"category": "Women’s Footwear",
 				"price": 42,
-				"quantity": 4
+				"quantity": 2
 			};
 		item3 = {
 			"id": 3,
 			"name": "Leather Driver Saddle Loafers, Tan",
 			"category": "Men’s Footwear",
 			"price": 34,
-			"quantity": 12
+			"quantity": 2
 		};
 	}));
 
-	beforeEach(module(function ($provide) {
-    $provide.value('flash', {
-        someVariable: 1
-    });
-  }));
 
-	describe('when visiting the homepage', function() {
-
-		it('displays items', function() {
-			expect(ctrl.inventory).toContain(item1)
-		});
-	});
 
 	describe('the shopping cart', function() {
 		it('starts with an empty cart', function() {
@@ -105,10 +98,6 @@ describe('ShopTillController', function() {
 			expect(ctrl.totalPrice).toEqual(89);
 		});
 
-		it('will raise an error if not eligible for 10 pound discount', function(){
-			ctrl.addItemToCart(item2);
-			expect( function() { ctrl.addTenVoucher() } ).toThrow(new Error("Not Eligible for £10 discount"))
-		});
 
 		it('can apply a 15 pound discount', function() {
 			ctrl.addItemToCart(item1);
@@ -117,9 +106,5 @@ describe('ShopTillController', function() {
 			expect(ctrl.totalPrice).toEqual(84);
 		});
 
-		it('will raise an error if not eligible for 10 pound discount', function(){
-			ctrl.addItemToCart(item2);
-			expect( function() { ctrl.addFifteenVoucher() } ).toThrow(new Error("Not Eligible for £15 discount"))
-		});
 	});
 });

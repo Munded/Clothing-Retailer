@@ -37,10 +37,9 @@ Inventory.getItems().success(setInventory);
 	
 	self.addItemToCart = function(item) {
 		if(item.quantity > 0) {
-			var cartItem = {"id": item.id, "name": item.name, "price": item.price, "quantity": 1}
+			var cartItem = {"id": item.id, "name": item.name, "category": item.category, "price": item.price, "quantity": 1}
 			self.shoppingCart.push(cartItem)
-			var shopItem = self.inventory.indexOf(item)
-			self.inventory[shopItem].quantity --
+			item.quantity --
 			self.setTotal()
 		} else {
 			var message = '<strong>Sorry</strong> Item is out of stock';
@@ -50,7 +49,7 @@ Inventory.getItems().success(setInventory);
 
 	self.removeItemFromCart = function(item) {
 		for(i=0; i < self.shoppingCart.length; i++){
-			if(self.shoppingCart[i] === item){
+			if(self.shoppingCart[i].id === item.id){
 				self.shoppingCart.splice(i, 1);
 			}
 		}
@@ -70,14 +69,13 @@ Inventory.getItems().success(setInventory);
 
 	self.setTotal = function() {
 		self.setSubTotal()
-		self.checkForShoes()
 		self.isEmpty()
-		if(self.fivePoundVoucher){
-			self.totalPrice = self.subTotalPrice - 5
+		if(self.fifteenPoundVoucher){
+			self.totalPrice = self.subTotalPrice - 15
 		} else if(self.tenPoundVoucher){
 			self.totalPrice = self.subTotalPrice - 10
-		} else if(self.fifteenPoundVoucher){
-			self.totalPrice = self.subTotalPrice - 15
+		} else if(self.fivePoundVoucher){
+			self.totalPrice = self.subTotalPrice - 5
 		}
 		else{
 			self.totalPrice = self.subTotalPrice
@@ -105,6 +103,7 @@ Inventory.getItems().success(setInventory);
 	}
 
 	self.addFifteenVoucher = function() {
+		self.checkForShoes()
 		Flash.dismiss()
 		if(self.subTotalPrice >= 75  && self.containingShoes) {
 			self.fifteenPoundVoucher = true;
