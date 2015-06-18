@@ -8,8 +8,8 @@ before_script:
   - npm start > /dev/null &
   - npm install -g bower
   - bower install
-  - "wget http://selenium-release.storage.googleapis.com/2.43/selenium-server-standalone-2.43.1.jar"
-	- "java -jar selenium-server-standalone-2.43.1.jar > /dev/null &"
+  - wget http://selenium-release.storage.googleapis.com/2.43/selenium-server-standalone-2.43.1.jar
+	- java -jar selenium-server-standalone-2.43.1.jar > /dev/null &
 
 script:
  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --reporters=dots --browsers=Chrome
