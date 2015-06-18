@@ -38,6 +38,7 @@ As a User, I can view the total price for the products in my shopping cart with 
 **How to Run**
 - Clone this repo and run 
   ``$ node server.js``
+- and visit ``http://localhost:3000``
   
 **How to Test**
 
@@ -51,9 +52,10 @@ As a User, I can view the total price for the products in my shopping cart with 
 - run tests with ``$ protractor test/e2e/conf.js``
  
 **Things To Improve**
-- Mock out Flash instead of injecting flash module
+- Mock out Flash in unit tests instead of injecting flash module
+- Work out how to test appearance of flash message on page
 - Sort out resizing of CSS
-- 
+- Add checkout system using stripe or paypal
 
  
 
