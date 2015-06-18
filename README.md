@@ -1,6 +1,7 @@
 #Shop Till You Drop
 
 [![Code Climate](https://codeclimate.com/github/Munded/Clothing-Retailer/badges/gpa.svg)](https://codeclimate.com/github/Munded/Clothing-Retailer)
+[![Build Status](https://travis-ci.org/Munded/Clothing-Retailer.svg?branch=master)](https://travis-ci.org/Munded/Clothing-Retailer)
 
 This is a test-driven single page Clothing-Retailer app designed in angular js with a simple node express server.
 
