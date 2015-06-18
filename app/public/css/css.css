@@ -18,9 +18,10 @@ img {
   border-radius: 20px;
   width: 550px;
   padding: 40px;
-  position: absolute;
+  position: fixed;
   right: 3%;
   top: 25%;
+  background-color: white;
 /*  float: right;
   position: static;
   top: 0;

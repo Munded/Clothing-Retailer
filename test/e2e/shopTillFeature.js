@@ -12,6 +12,10 @@ describe('ShopTillYouDrop homepage', function() {
   	expect(element(by.id('wf')).getText()).toContain("Women's Footwear");
  	});
 
+var clickAddToCart = function() {
+	element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
+	get(0).element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()  
+}
 
   describe('it can add items to cart', function() {
 
@@ -20,24 +24,18 @@ describe('ShopTillYouDrop homepage', function() {
 	  });
 
 		it('can add an item to the shopping basket', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(0).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()  
+			clickAddToCart()    
 		  expect(element(by.id('cart')).getText()).toContain('99');
 		 });
 
 		it('can remove an item from the basket', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(0).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			clickAddToCart()  
 			element(by.css('.glyphicon-remove')).click()
 			expect(element(by.id('cart')).getText()).toContain('There are no items in your Cart');
 		});
 
 		it('can calculate total', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(0).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			clickAddToCart()  
 			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
 			get(1).
 			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
@@ -47,17 +45,13 @@ describe('ShopTillYouDrop homepage', function() {
 
 	describe('it can add vouchers to final purchase', function() {
 		it('can take 5 pounds off', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(0).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			clickAddToCart()  
 			element(by.id('five-pound-voucher')).click();
 			expect(element(by.id('cart')).getText()).toContain('94');
 		});
 
 		it('can take 10 pounds off', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(0).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
+			clickAddToCart()  
 			element(by.id('ten-pound-voucher')).click();
 			expect(element(by.id('cart')).getText()).toContain('89');
 		});
