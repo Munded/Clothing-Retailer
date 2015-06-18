@@ -69,34 +69,5 @@ describe('ShopTillYouDrop homepage', function() {
 			element(by.id('ten-pound-voucher')).click();
 			expect(element(by.model('flash')).getText()).toContain('Not Eligible for £10 discount!');
 		});
-
-		// it('can take 15 pounds off', function() {
-		// 	element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-		// 	get(0).
-		// 	element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
-		// 	element(by.id('fifteen-pound-voucher')).click();
-		// 	expect(element(by.id('cart')).getText()).toContain('84');
-		// });
-
-		it('will raise an error if not eligible for 15 pound discount', function() {
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-			get(1).
-			element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
-			element(by.id('fifteen-pound-voucher')).click();
-			expect(element(by.css('.alert-danger')).getText()).toContain('Not Eligible for £15 discount!');
-			console.log(browser.findElement(by.css('.alert-danger')))
-		});
-
-		it('will raise an error if item is out of stock', function() {
-			for(i=0; i<4; i++) {
-				element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-				get(1).
-				element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
-			}
-			element.all(by.repeater("item in ctrl.inventory | filter: { category:'Female Footwear'}")).
-				get(1).
-				element(by.css('[ng-click="ctrl.addItemToCart(item)"')).click()
-			expect(element(by.id('message')).getText()).toContain('Item is out of stock');
-		});
 	});
 });
