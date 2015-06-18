@@ -1,6 +1,8 @@
 #Shop Till You Drop
 
-This is a single page app designed in angular js with a simple node express server.
+[![Code Climate](https://codeclimate.com/github/Munded/Clothing-Retailer/badges/gpa.svg)](https://codeclimate.com/github/Munded/Clothing-Retailer)
+
+This is a test-driven single page Clothing-Retailer app designed in angular js with a simple node express server.
 
 User Stories
 ```
