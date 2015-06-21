@@ -59,7 +59,6 @@ As a User, I can view the total price for the products in my shopping cart with 
 - Add checkout system using stripe or paypal
 - store inventory into a database e.g. mongodb
 - Refactor the ng-repeat filter method to allow for cleaner index.html
-- Extract total
 
  
 
