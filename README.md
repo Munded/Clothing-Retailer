@@ -43,20 +43,23 @@ As a User, I can view the total price for the products in my shopping cart with 
   
 **How to Test**
 
-*-Unit Testing:*
-- host server with ``$ node server.js``
-- run tests with ``$ karma start test/karma.conf.js``
+*- Unit Testing:*
+  - host server with ``$ node server.js``
+  - run tests with ``$ karma start test/karma.conf.js``
 
-*-Feature Testing:*
-- run server with ``$ node server.js``
-- run selium server with ``$ webdriver-manager start``
-- run tests with ``$ protractor test/e2e/conf.js``
+*- Feature Testing:*
+  - run server with ``$ node server.js``
+  - run selium server with ``$ webdriver-manager start``
+  - run tests with ``$ protractor test/e2e/conf.js``
  
 **Things To Improve**
 - Mock out Flash in unit tests instead of injecting flash module
-- Work out how to test appearance of flash message on page
-- Sort out resizing of CSS
+- Make own flash service, module uses ``$timeout`` instead of ``$interval`, making testing text impossible 
+- Sort out resizing of CSS - cart to drop to bottom at smaller screen sizes
 - Add checkout system using stripe or paypal
+- store inventory into a database e.g. mongodb
+- Refactor the ng-repeat filter method to allow for cleaner index.html
+- Extract total
 
  
 
